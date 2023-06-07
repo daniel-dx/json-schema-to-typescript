@@ -216,3 +216,11 @@ Prettier is known to run slowly on really big files. To skip formatting and impr
 - [Stryker](https://github.com/stryker-mutator/stryker)
 - [Webpack](https://github.com/webpack/webpack)
 - [See more](https://github.com/bcherny/json-schema-to-typescript/network/dependents?package_id=UGFja2FnZS0xNjUxOTM5Mg%3D%3D)
+
+## 如何发布
+
+```sh
+$ yarn build:browser
+```
+
+将 `dist/bundle.js` 重命名上传到 COS 上
