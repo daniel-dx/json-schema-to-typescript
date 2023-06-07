@@ -15,6 +15,14 @@
       "processId": "${command:PickProcess}",
       "port": 5858,
       "sourceMaps": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug with ts-node",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "args": ["${workspaceFolder}/test.ts"],
+      "outputCapture": "std"
     }
   ]
 }

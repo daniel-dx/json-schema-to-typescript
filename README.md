@@ -4,6 +4,8 @@
 [npm]: https://img.shields.io/npm/v/json-schema-to-typescript.svg?style=flat-square
 [mit]: https://img.shields.io/npm/l/json-schema-to-typescript.svg?style=flat-square
 
+> ! Include the browser bundle of json-schema-to-typescript
+
 > Compile json schema to typescript typings
 
 ## Example

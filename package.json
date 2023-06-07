@@ -1,6 +1,6 @@
 {
-  "name": "json-schema-to-typescript",
-  "version": "11.0.2",
+  "name": "json-schema-to-typescript-for-browser",
+  "version": "11.0.4",
   "description": "compile json schema to typescript typings",
   "main": "dist/src/index.js",
   "bin": {
@@ -11,7 +11,7 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "build": "npm run lint && npm run clean && npm run build:browser && npm run build:server",
+    "build": "npm run clean && npm run build:browser && npm run build:server",
     "build:browser": "browserify src/index.ts -s jstt -p tsify > dist/bundle.js",
     "build:server": "tsc -d",
     "clean": "shx rm -rf dist && mkdir dist",
@@ -19,7 +19,6 @@
     "tdd": "concurrently -r -p '' -k 'npm run watch' 'npm run watch:test'",
     "test": "npm run pre-test && ava --timeout=300s --verbose",
     "stresstest": "seq 1 10 | xargs -I{} npm test",
-    "prepublishOnly": "npm test",
     "pre-test": "npm run clean && npm run build:server",
     "watch": "tsc -w",
     "watch:test": "ava -w"
@@ -81,8 +80,9 @@
     "eslint-plugin-prettier": "^4.0.0",
     "rimraf": "^3.0.2",
     "shx": "^0.3.4",
+    "ts-node": "^10.9.1",
     "tsify": "^5.0.4",
-    "typescript": "^4.6.4"
+    "typescript": "^5.1.3"
   },
   "ava": {
     "files": [

@@ -52,7 +52,7 @@ rules.set('Transform `required`=false to `required`=[]', schema => {
   }
 })
 
-rules.set('Default additionalProperties', (schema, _, options) => {
+rules.set('Default additionalProperties', (schema: any, _, options) => {
   if (isObjectType(schema) && !('additionalProperties' in schema) && schema.patternProperties === undefined) {
     schema.additionalProperties = options.additionalProperties
   }
@@ -219,6 +219,12 @@ rules.set('Transform const to singleton enum', schema => {
   if (schema.const !== undefined) {
     schema.enum = [schema.const]
     delete schema.const
+  }
+})
+
+rules.set('Remove enum with empty array', schema => {
+  if (Array.isArray(schema.enum) && schema.enum.length === 0) {
+    delete schema.enum
   }
 })
 
