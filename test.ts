@@ -1,5 +1,4 @@
-import { compile } from './src'
-
+import {compile} from './src'
 
 // @ts-ignore
 async function main() {
@@ -1050,16 +1049,45 @@ async function main() {
   //     }
   //   }
   // }
+  /**
+   * 测试空 enum
+   */
+  // const jsonschema: any = {
+  //   type: 'string',
+  //   enum: []
+  // }
+  /**
+   * 测试 $ref
+   */
   const jsonschema: any = {
-    type: 'string',
-    enum: []
+    type: 'object',
+    properties: {
+      checkedNodes: {
+        title: '已选中的节点列表',
+        type: 'array',
+        items: {
+          $id: 'Node',
+          type: 'object',
+          properties: {
+            children: {type: 'array', items: {$ref: 'Node'}},
+            disabled: {title: 'disabled', type: 'boolean'}
+          }
+        }
+      }
+    }
   }
-  let dts = await compile(jsonschema, 'IWeDa', { additionalProperties: false, bannerComment: '', format: false })
+
+  let dts = await compile(jsonschema, 'IWeDa', {
+    additionalProperties: true,
+    bannerComment: '',
+    format: false,
+    unknownAny: false
+  })
 
   console.log(dts)
   console.log('======================', dts.length)
   let dts1 = dts.replace(/^export interface.*$/m, '')
-  console.log(dts1.substring(0, dts1.length-2))
+  console.log(dts1.substring(0, dts1.length - 2))
 }
 
 main()
